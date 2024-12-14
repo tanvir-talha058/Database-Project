@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lung Cancer - NSCLC Radiomics Genomics </title>
+  <style>
+    /* General body styles */
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #1e3c72, #2a5298, #38a3a5, #57cc99);
+      background-size: 400% 400%;
+      animation: gradientBackground 12s infinite;
+      overflow: hidden;
+    }
+
+    @keyframes gradientBackground {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      animation: float 8s infinite ease-in-out;
+      z-index: 1;
+    }
+
+    .shape:nth-child(1) {
+      width: 120px;
+      height: 120px;
+      top: 10%;
+      left: 10%;
+    }
+
+    .shape:nth-child(2) {
+      width: 180px;
+      height: 180px;
+      top: 70%;
+      left: 70%;
+    }
+
+    .shape:nth-child(3) {
+      width: 100px;
+      height: 100px;
+      top: 40%;
+      left: 80%;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+   
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 70px;
+      background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+      color: white;
+      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      z-index: 10;
+      animation: fadeIn 1s ease-out;
+    }
+
+    .overlay h1 {
+      font-size: 24px;
+      margin: 0;
+      letter-spacing: 1px;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+
+    .overlay .clock {
+      font-size: 18px;
+      font-weight: lighter;
+    }
+
+    /* Main container style */
+    .container {
+      width: 90%;
+      height: 90%;
+      position: relative;
+      margin-top: 80px;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      border-radius: 20px;
+      overflow: hidden;
+      z-index: 2;
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    /* Iframe styling */
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 10px;
+    }
+
+    /* Buttons section */
+    .buttons {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      gap: 15px;
+      z-index: 3;
+    }
+
+    .button {
+      padding: 10px 20px;
+      font-size: 14px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background: linear-gradient(90deg, #38a3a5, #57cc99);
+      color: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .button:hover {
+      background: linear-gradient(90deg, #2a5298, #1e3c72);
+      transform: scale(1.1);
+      box-shadow: 0 6px 15px rgba(30, 60, 114, 0.6);
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .container {
+        width: 95%;
+        height: 75vh;
+      }
+
+      .overlay h1 {
+        font-size: 18px;
+      }
+
+      .overlay .clock {
+        font-size: 14px;
+      }
+
+      .button {
+        font-size: 12px;
+        padding: 8px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating decorative shapes -->
+  <div class="shape"></div>
+  <div class="shape"></div>
+  <div class="shape"></div>
+
+  <!-- Overlay section (header) -->
+  <div class="overlay">
+    <h1> Lung Cancer - NSCLC Radiomics Genomics </h1>
+    <div class="clock" id="clock"></div>
+  </div>
+
+  <!-- Main content container -->
+  <div class="container">
+    <div class="buttons">
+      <button class="button" onclick="refreshIframe()">Refresh Iframe</button>
+      <button class="button" onclick="navigateToPage()">Visit Source</button>
+    </div>
+    <iframe id="embedIframe" src="https://mathbiol.github.io/tcgatil/" frameborder="0"></iframe>
+  </div>
+
+  <script>
+    
+    function updateClock() {
+      const clockElement = document.getElementById('clock');
+      const now = new Date();
+      const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      clockElement.textContent = timeString;
+    }
+    setInterval(updateClock, 1000); 
+    updateClock(); // Initial call
+
+    // Function to refresh the iframe
+    function refreshIframe() {
+      const iframe = document.getElementById('embedIframe');
+      iframe.src = iframe.src; // Refresh the iframe by re-assigning its source
+    }
+
+    // Function to navigate to the source page
+    function navigateToPage() {
+      window.open('https://mathbiol.github.io/tcgatil/', '_blank');
+    }
+  </script>
+
+</body>
+</html>
