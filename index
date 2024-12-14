@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Embed Iframe Example</title>
+  <style>
+    /* General body styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+
+    /* Overlay style for the header */
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 70px; /* Height for the header */
+      background-color: #333; /* Dark background for contrast */
+      color: white; /* White text color */
+      text-align: center;
+      line-height: 70px; /* Center the text vertically */
+      font-size: 24px;
+      font-weight: bold;
+      z-index: 1; /* Ensure the overlay stays on top */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for separation */
+    }
+
+    /* Main container style */
+    .container {
+      width: 90%; /* Set a smaller width for better responsiveness */
+      height: 90%;
+      position: relative;
+      top: 80px; /* Push the content down to avoid overlap with the header */
+      padding: 10px;
+      background-color: white; /* White background for the iframe container */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional box-shadow for depth */
+      border-radius: 8px; /* Rounded corners */
+      overflow: hidden;
+    }
+
+    /* Iframe styling */
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 8px; /* Round corners for the iframe */
+    }
+
+    /* Optional responsive adjustment */
+    @media (max-width: 768px) {
+      .container {
+        width: 100%; /* Make the container full width on small screens */
+        height: 70vh; /* Adjust height on smaller screens */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Overlay section (header) -->
+  <div class="overlay">
+    Embedded Iframe Header
+  </div>
+
+  <!-- Main content container -->
+  <div class="container">
+    <iframe id="embedIframe" src="https://mathbiol.github.io/tcgatil/" frameborder="0"></iframe>
+  </div>
+
+  <script>
+    // JavaScript to handle iframe loading event or dynamic behavior
+    document.getElementById('embedIframe').onload = function() {
+      console.log('Iframe loaded successfully!');
+    };
+  </script>
+
+</body>
+</html>
